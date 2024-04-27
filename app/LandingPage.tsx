@@ -9,13 +9,13 @@ const LandingPage = () => {
   const [isDisabledName, setIsDisabledName] = useState(true);
   const [isDisabledDiff, setIsDisabledDiff] = useState(true);
 
-  const handleNameChange = (e) => {
+  const handleNameChange = (e: any) => {
     setName(e.target.value);
     setError("");
     setIsDisabledName(false);
   };
 
-  const handleDifficultyChange = (e) => {
+  const handleDifficultyChange = (e: any) => {
     setDifficulty(e.target.value);
     setError("");
     setIsDisabledDiff(false);
