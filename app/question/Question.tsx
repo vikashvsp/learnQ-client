@@ -1,5 +1,6 @@
+"use client";
 import axios from "axios";
-import { useRouter } from "next/router";
+import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const Question = () => {
@@ -8,11 +9,11 @@ const Question = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [score, setScore] = useState(0);
   const [warningMessage, setWarningMessage] = useState("");
-  const router = useRouter();
-  const { name, difficulty } = router.query;
+  const searchParams = useSearchParams();
+  const name = searchParams.get("name");
+  const difficulty = searchParams.get("difficulty");
 
-  //   const urlParams = new URLSearchParams(window.location.search);
-  //   const name = urlParams.get("name");
+  console.log("ye", name, difficulty);
   useEffect(() => {
     fetchData();
   }, []);
