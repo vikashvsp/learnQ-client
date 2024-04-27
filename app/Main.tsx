@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import SplashScreen from "./SplashScreen";
 import LandingPage from "./LandingPage";
 
@@ -19,7 +19,9 @@ const Main = () => {
         <SplashScreen />
       </div>
       <div id="main-content">
-        <LandingPage />
+        <Suspense fallback={<div>Loading...</div>}>
+          <LandingPage />
+        </Suspense>
       </div>
     </div>
   );
