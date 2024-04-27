@@ -31,7 +31,7 @@ const LandingPage = () => {
   return (
     <div className="text-black flex flex-col items-center justify-center h-screen bg-gradient-to-b from-blue-400 to-purple-500">
       <h1 className="text-4xl font-bold mb-8 text-black-600">Quiz App</h1>
-      <div className="w-full max-w-xl mx-auto p-8 bg-white shadow-lg rounded-lg my-8">
+      <div className="w-full max-w-xl mx-auto p-8 bg-white shadow-lg rounded-lg my-8 mx-8">
         <h2 className="text-2xl font-semibold mb-4 text-black">Quiz Setup</h2>
         {error && <p className="text-red-500 mb-4">{error}</p>}
         <div className="mb-4">
