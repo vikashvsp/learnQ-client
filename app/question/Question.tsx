@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 const Question = () => {
-  const [questions, setQuestions] = useState([]);
+  const [questions, setQuestions] = useState<any>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [score, setScore] = useState(0);
@@ -13,13 +13,15 @@ const Question = () => {
     fetchData();
   }, []);
 
-  const getRandomItems = (array, count) => {
+  const getRandomItems = (array: any[], count: number) => {
     const shuffled = array.sort(() => 0.5 - Math.random());
     return shuffled.slice(0, count);
   };
   const fetchData = async () => {
     try {
-      const response = await axios.get("https://learnq-server-1.onrender.com/questions");
+      const response = await axios.get(
+        "https://learnq-server-1.onrender.com/questions"
+      );
       const data = response.data;
       let filteredQuestions = [];
       const urlParams = new URLSearchParams(window.location.search);
@@ -27,7 +29,7 @@ const Question = () => {
 
       if (difficulty && difficulty !== "Any") {
         filteredQuestions = data.filter(
-          (question) => question["Difficulty Level"] === difficulty
+          (question: any) => question["Difficulty Level"] === difficulty
         );
       } else {
         filteredQuestions = data;
@@ -39,7 +41,7 @@ const Question = () => {
       console.error(error);
     }
   };
-  const handleOptionSelect = (option) => {
+  const handleOptionSelect = (option: any) => {
     setSelectedOption(option);
     setWarningMessage("");
   };
@@ -61,8 +63,8 @@ const Question = () => {
     setSelectedOption(null);
     setCurrentQuestionIndex(currentQuestionIndex + 1);
   };
-  const MathExpression = ({ expression }) => {
-    const parseExpression = (exp) => {
+  const MathExpression = ({ expression }: any) => {
+    const parseExpression = (exp: any) => {
       // Create a dictionary for superscript characters
       const superscripts = {
         "0": "⁰",
@@ -82,11 +84,13 @@ const Question = () => {
         n: "ⁿ",
       };
       return exp
-        .replace(/\^(-?\d+|\(-?\d+\+[^\)]+\)|[a-z]\+?\d*)/g, (match, group) =>
-          group
-            .split("")
-            .map((character) => superscripts[character] || character)
-            .join("")
+        .replace(
+          /\^(-?\d+|\(-?\d+\+[^\)]+\)|[a-z]\+?\d*)/g,
+          (match: any, group: any) =>
+            group
+              .split("")
+              .map((character: any) => superscripts[character] || character)
+              .join("")
         )
         .replace(/\^/g, "")
         .replace(/\(n\+1\)/g, "⁽ⁿ⁺¹⁾")
@@ -177,7 +181,7 @@ const Question = () => {
               Your percentage: {(score / 4) * 100}%
             </p>
             <ul>
-              {questions?.map((question, index) => (
+              {questions?.map((question: any, index: any) => (
                 <li key={index} className="mb-4">
                   <p>
                     <strong>Question:</strong>
