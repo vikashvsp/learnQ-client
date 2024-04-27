@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+
 const Question = () => {
   const [questions, setQuestions] = useState<any>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -66,7 +67,7 @@ const Question = () => {
   const MathExpression = ({ expression }: any) => {
     const parseExpression = (exp: any) => {
       // Create a dictionary for superscript characters
-      const superscripts = {
+      const superscripts: any = {
         "0": "⁰",
         "1": "¹",
         "2": "²",
