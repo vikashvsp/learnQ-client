@@ -9,6 +9,7 @@ const Question = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [score, setScore] = useState(0);
   const [warningMessage, setWarningMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   const searchParams = useSearchParams();
   const name = searchParams.get("name");
   const difficulty = searchParams.get("difficulty");
@@ -44,6 +45,8 @@ const Question = () => {
       setQuestions(randomQuestions);
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsLoading(false);
     }
   };
   const handleOptionSelect = (option: any) => {
@@ -144,10 +147,20 @@ const Question = () => {
       </div>
     );
   };
-
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-gradient-to-b from-blue-400 to-purple-500">
+        <div className="bg-white rounded-lg p-8 mx-4 w-full max-w-4xl mt-8 mb-8 border border-blue-500 border-9">
+          <div className="text-center text-black text-2xl font-bold mb-4 text-center">
+            Loading...
+          </div>
+        </div>
+      </div>
+    );
+  }
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-b from-blue-400 to-purple-500">
-      <div className="bg-white rounded-lg p-8 w-full max-w-4xl mt-8 mb-8 border border-blue-500 border-9">
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-b from-blue-400 to-purple-500 text-black">
+      <div className="bg-white rounded-lg p-8 mx-4 w-full max-w-4xl mt-8 mb-8 border border-blue-500 border-9">
         {currentQuestionIndex < questions.length ? (
           <div>
             <h2 className="text-2xl font-bold mb-4 text-center">
