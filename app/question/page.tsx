@@ -1,9 +1,13 @@
 "use client";
-import React from "react";
+import React, { Suspense } from "react";
 import Question from "./Question";
 
 const page = () => {
-  return <Question />;
+  return (
+    <Suspense>
+      <Question />
+    </Suspense>
+  );
 };
 
 export default page;

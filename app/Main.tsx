@@ -19,9 +19,7 @@ const Main = () => {
         <SplashScreen />
       </div>
       <div id="main-content">
-        <Suspense fallback={<div>Loading...</div>}>
-          <LandingPage />
-        </Suspense>
+        <LandingPage />
       </div>
     </div>
   );
