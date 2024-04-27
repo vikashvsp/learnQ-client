@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 
 const Question = () => {
@@ -7,9 +8,11 @@ const Question = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [score, setScore] = useState(0);
   const [warningMessage, setWarningMessage] = useState("");
+  const router = useRouter();
+  const { name, difficulty } = router.query;
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const name = urlParams.get("name");
+  //   const urlParams = new URLSearchParams(window.location.search);
+  //   const name = urlParams.get("name");
   useEffect(() => {
     fetchData();
   }, []);
@@ -25,8 +28,8 @@ const Question = () => {
       );
       const data = response.data;
       let filteredQuestions = [];
-      const urlParams = new URLSearchParams(window.location.search);
-      const difficulty = urlParams.get("difficulty");
+      //  const urlParams = new URLSearchParams(window.location.search);
+      //  const difficulty = urlParams.get("difficulty");
 
       if (difficulty && difficulty !== "Any") {
         filteredQuestions = data.filter(
